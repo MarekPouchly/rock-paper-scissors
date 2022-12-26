@@ -1,7 +1,22 @@
-let playerSelection = ""
-let computerSelection = ""
-const buttons = document.querySelectorAll('button')
+const buttons = document.querySelectorAll('.btn-symbol')
+const showPlayerScore = document.querySelector('.playerResult')
+const showComputerScore = document.querySelector('.computerResult')
+const showPlayerSymbol = document.querySelector('.playerSymbol')
+const showComputerSymbol = document.querySelector('.computerSymbol')
+const playAgainButton = document.querySelector('.btnPlayAgain')
+let playerScore = 0
+let computerScore = 0
 
+playAgainButton.style.display = "none";
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        if (playerScore === 5 || computerScore === 5) {
+            return
+        }
+        playGame(button.textContent)
+    })
+})
 
 function getComputerChoice() {
     const symbols = ["Rock", "Paper", "Scissors"]
@@ -10,10 +25,8 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-
     if (playerSelection == computerSelection) {
-        return 2
+        return 2;
     } 
     else if (playerSelection == "Rock") {
         return (computerSelection == "Paper") ? 0 : 1;
@@ -26,37 +39,33 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0
-    let computerScore = 0
-    let tie = 0
+function playGame(playerSelection) {
+    let computerSelection = getComputerChoice()
+    let result = (playRound(playerSelection, computerSelection))
 
-    for (let i = 0; i < 5; i++) {
-        computerSelection = getComputerChoice()
-        playerSelection = prompt("Select Rock, Paper or Scissors")
-
-        if (playRound(playerSelection, computerSelection) === 0) {
-            computerScore += 1;
-        } else if (playRound(playerSelection, computerSelection) === 1) {
-            playerScore += 1;
-        } else if (playRound(playerSelection, computerSelection) === 2) {
-            tie += 1;
-        }
+    if (result === 0) {
+        computerScore +=1 ;
+        showComputerScore.textContent = `${computerScore}`;
+    } else if (result == 1) {
+        playerScore += 1;
+        showPlayerScore.textContent = `${playerScore}`;
     }
 
-    if (playerScore > computerScore) {
-        alert(`You are a winner: ${playerScore}:${computerScore}`)
-    } else if (playerScore < computerScore) {
-        alert(`You lost: ${playerScore}:${computerScore}`)
-    } else {
-        alert(`Tie: ${playerScore}:${computerScore}`)
+    if (computerScore === 5 || playerScore === 5) {
+        playAgainButton.style.display = "block";
+        playAgainButton.addEventListener("click", playAgain)
     }
+
+    showPlayerSymbol.textContent = `${playerSelection}`
+    showComputerSymbol.textContent = `${computerSelection}`
 }
 
-
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        computerSelection = getComputerChoice()
-        console.log(playRound(button.textContent, computerSelection))
-    })
-})
+function playAgain() {
+    playAgainButton.style.display = "none";
+    playerScore = 0
+    showPlayerScore.textContent = `${playerScore}`;
+    computerScore = 0
+    showComputerScore.textContent = `${computerScore}`;
+    showPlayerSymbol.display = "none";
+    showComputerSymbol.display = "none";
+}

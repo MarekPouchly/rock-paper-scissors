@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 50px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.youVsComputer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    font-size: 2em;
+}
+
+.you,
+.computer {
+    width: 160px;
+    font-weight: bold;
+}
+
+.you {
+    display: flex;
+    justify-content: end;
+}
+
+.results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 50px 50px 50px;
+    gap: 1em;
+    font-size: 2em;
+}
+
+.playerSymbol,
+.computerSymbol {
+    width: 150px;
+    display: flex;
+    font-style: italic;
+}
+
+.playerSymbol {
+    justify-content: end;
+}
+
+.playerResult,
+.computerResult {
+    font-size: 3em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.btn-symbol {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    width: 130px;
+    box-shadow: 0 9px #e6ae06;
+}
+
+.btn-symbol:active {
+    box-shadow: 0 9px #e6ae06;
+    transform: translateY(4px);
+}
+
+.symbols {
+    display: flex;
+    justify-content: center;
+    gap: 10em;
+    margin-top: 20px;
+}
+
+.playAgain {
+    display: flex;
+    justify-content: center;
+}
+
+.btnPlayAgain {
+    margin-top: 50px;
+    width: 400px;
+    height: 150px;
+    font-size: 40px;
+    box-shadow: 0 15px #0e4b2f;
+    font-weight: bold;
+}
+
+.btnPlayAgain:active {
+    box-shadow: 0 15px #0e4b2f;
+    transform: translateY(4px);
+}
