@@ -1,5 +1,7 @@
 let playerSelection = ""
 let computerSelection = ""
+const buttons = document.querySelectorAll('button')
+
 
 function getComputerChoice() {
     const symbols = ["Rock", "Paper", "Scissors"]
@@ -50,3 +52,11 @@ function game() {
         alert(`Tie: ${playerScore}:${computerScore}`)
     }
 }
+
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        computerSelection = getComputerChoice()
+        console.log(playRound(button.textContent, computerSelection))
+    })
+})
